@@ -22,9 +22,9 @@ function App() {
       <button>2</button>
       <button>1</button>
       <button>min</button>
+      <button className="two">0</button>
       <button>.</button>
       <button>=</button>
-      <button className="two">0</button>
     </div>
   );
 }
