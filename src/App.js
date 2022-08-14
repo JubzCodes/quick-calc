@@ -4,10 +4,10 @@ function App() {
   return (
     <div className="grid">
       <div className="output">
-        <div className="previous"></div>
-        <div className="current"></div>
+        <div className="previous">1,400</div>
+        <div className="current">1,400</div>
       </div>
-      <button>A/C</button>
+      <button className="two">A/C</button>
       <button>Del</button>
       <button>div</button>
       <button>9</button>
@@ -23,8 +23,8 @@ function App() {
       <button>1</button>
       <button>min</button>
       <button>.</button>
-      <button>0</button>
       <button>=</button>
+      <button className="two">0</button>
     </div>
   );
 }
