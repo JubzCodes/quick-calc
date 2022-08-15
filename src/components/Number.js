@@ -6,8 +6,8 @@ import {
 
 export default function NumberButton({ dispatch, num, styles, icon }) {
 
-  // console.log(num.props.icon.icon)
+  // console.log(num)
 
-  return <button className={`${styles ? "two" : ""}`}  onClick={()=> dispatch({ type: ACTIONS.ADD_NUM, payload: { num}})}> {num && icon? (<FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
+  return <button className={`${styles ? "two" : ""}`}  onClick={()=> dispatch({ type: ACTIONS.ADD_NUM, payload: {num}})}> {num && icon? (<FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
 ) : (num)}</button>
 }

@@ -6,7 +6,6 @@ import {
   faDivide,
   faMinus,
   faEquals,
-  faCircle,
   faDeleteLeft,
   faCalculator
 } from "@fortawesome/free-solid-svg-icons";
@@ -36,7 +35,14 @@ const reducer =  (state, { type, payload }) => {
 
     // add number to output
   switch(type) {
-    case ACTIONS.ADD_NUM: 
+    case ACTIONS.ADD_NUM:
+
+      console.log(state.currentOutput, "out")
+      // handle multiple 0's
+      if (payload.num === "0" && state.currentOutput === "0") {
+        return state
+      }
+    
     return {
       ...state, 
       currentOutput: `${state.currentOutput || " "}${payload.num}`
@@ -50,7 +56,9 @@ const reducer =  (state, { type, payload }) => {
 function App() {
 
   //REDUCER STATE
-  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer, {})
+  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer, {currentOutput: "0"})
+
+  console.log(currentOutput , "curr")
 
   return (
     <div>
@@ -94,7 +102,6 @@ function App() {
           dispatch={dispatch}
           icon="true"
         />
-        {/* <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon> */}
         <button>
           <FontAwesomeIcon icon={faEquals} color="blue"></FontAwesomeIcon>
         </button>
