@@ -38,9 +38,15 @@ const reducer =  (state, { type, payload }) => {
     case ACTIONS.ADD_NUM:
 
       console.log(state.currentOutput, "out")
-      // handle multiple 0's
+      // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
         return state
+      }
+
+      //handle multiple .'s
+      if (payload.num === "." && state.currentOutput?.includes(".")) {
+        console.log("works");
+        return state;
       }
     
     return {
