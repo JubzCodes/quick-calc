@@ -35,32 +35,44 @@ const reducer =  (state, { type, payload }) => {
 
   //SWITCH CASES FOR ACTIONS
 
-  switch(type) {
-
+  switch (type) {
+    //////////////// CASE 1 ///////////////////
     // handle clear button
-    case ACTIONS.CLEAR: 
+    case ACTIONS.CLEAR:
       return {
         ...state,
-        currentOutput: "0"
-    }
+        currentOutput: "0",
+      };
 
+    //////////////// CASE 2 ///////////////////
     // add number to output
     case ACTIONS.ADD_NUM:
-
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
         return state;
       }
 
+    //////////////// CASE 3 ///////////////////
       //handle multiple .'s
       if (payload.num === "." && state.currentOutput?.includes(".")) {
         return state;
       }
-    
-    return {
-      ...state, 
-      currentOutput: `${state.currentOutput || " "}${payload.num}`
+
+    //////////////// CASE 4 ///////////////////
+    case ACTIONS.CHOOSE_OPERATOR: 
+    if (state.previousOutput === null) {
+      return {
+        ...state, 
+        operator: payload.operator,
+        previousOutput: state.currentOutput,
+        currentOutput: null,
+      }
     }
+
+      return {
+        ...state,
+        currentOutput: `${state.currentOutput || " "}${payload.num}`,
+      };
   }
 
 }
