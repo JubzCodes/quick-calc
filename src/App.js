@@ -89,9 +89,12 @@ function App() {
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
-        <button>
-          <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
-        </button>
+        <NumberButton
+          num="."
+          dispatch={dispatch}
+          icon="true"
+        />
+        {/* <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon> */}
         <button>
           <FontAwesomeIcon icon={faEquals} color="blue"></FontAwesomeIcon>
         </button>
