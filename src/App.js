@@ -75,7 +75,11 @@ function App() {
     <div>
       <h1>
         Quick - Calc{" "}
-        <FontAwesomeIcon icon={faCalculator} color="blue"></FontAwesomeIcon>
+        <FontAwesomeIcon
+          icon={faCalculator}
+          color="blue"
+          flip={true}
+        ></FontAwesomeIcon>
       </h1>
       <div className="grid">
         <div className="output">
