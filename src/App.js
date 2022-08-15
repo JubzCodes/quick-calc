@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
 import NumberButton from "./components/Number";
+import OperatorButton from "./components/Operation";
 
 
 const styles = { 
@@ -90,11 +91,9 @@ function App() {
           className="two"
           onClick={() => dispatch({ type: ACTIONS.CLEAR })}
         >
-          <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
         </button>
-        <button>
-          <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>
-        </button>
+        <OperatorButton operator="÷" icons="divide" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>
         </button>

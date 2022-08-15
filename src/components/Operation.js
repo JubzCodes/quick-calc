@@ -13,16 +13,16 @@ export default function OperatorButton({ dispatch, operator, icons }) {
 
     switch (icons) {
 
-      case icons.DIVIDE:
+      case icons = "DIVIDE":
         return <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>;
 
-      case icons.MULTIPLY:
+      case icons = "MULTIPLY":
         return <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>;
 
-      case icons.PLUS:
+      case icons = "PLUS":
         return <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>;
 
-      case icons.MINUS:
+      case icons = "MINUS":
         return <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>;
 
     }
