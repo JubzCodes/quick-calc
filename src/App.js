@@ -46,17 +46,18 @@ const reducer =  (state, { type, payload }) => {
 function App() {
 
   //REDUCER STATE
-  const [{ currentOutput, previousOoutput, operator }, dispatch] = useReducer(reducer)
+  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer)
 
   return (
     <div>
       <h1>
-        Quick  - Calc <FontAwesomeIcon icon={faCalculator} color="blue"></FontAwesomeIcon>
+        Quick - Calc{" "}
+        <FontAwesomeIcon icon={faCalculator} color="blue"></FontAwesomeIcon>
       </h1>
       <div className="grid">
         <div className="output">
-          <div className="previous">1,400</div>
-          <div className="current">1,400</div>
+          <div className="previous">{previousOutput}</div>
+          <div className="current">{currentOutput}</div>
         </div>
         <button className="two">A/C</button>
         <button>
@@ -65,25 +66,25 @@ function App() {
         <button>
           <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>
         </button>
-        <button>9</button>
-        <button>8</button>
-        <button>7</button>
+        <NumberButton num="9" dispatch={dispatch} />
+        <NumberButton num="8" dispatch={dispatch} />
+        <NumberButton num="7" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
         </button>
-        <button>6</button>
-        <button>5</button>
-        <button>4</button>
+        <NumberButton num="6" dispatch={dispatch} />
+        <NumberButton num="5" dispatch={dispatch} />
+        <NumberButton num="4" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
         </button>
-        <button>3</button>
-        <button>2</button>
-        <button>1</button>
+        <NumberButton num="3" dispatch={dispatch} />
+        <NumberButton num="2" dispatch={dispatch} />
+        <NumberButton num="1" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
-        <button className="two">0</button>
+        <NumberButton className="two" num="0" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
         </button>
