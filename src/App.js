@@ -91,30 +91,24 @@ function App() {
           className="two"
           onClick={() => dispatch({ type: ACTIONS.CLEAR })}
         >
-        <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
         </button>
-        <OperatorButton operator="÷" icons="divide" dispatch={dispatch} />
+        <OperatorButton operator="÷" icons="DIVIDE" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>
         </button>
         <NumberButton num="9" dispatch={dispatch} />
         <NumberButton num="8" dispatch={dispatch} />
         <NumberButton num="7" dispatch={dispatch} />
-        <button>
-          <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-        </button>
+        <OperatorButton operator="x" icons="MULTIPLY" dispatch={dispatch} />
         <NumberButton num="6" dispatch={dispatch} />
         <NumberButton num="5" dispatch={dispatch} />
         <NumberButton num="4" dispatch={dispatch} />
-        <button>
-          <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-        </button>
+        <OperatorButton operator="+" icons="PLUS" dispatch={dispatch} />
         <NumberButton num="3" dispatch={dispatch} />
         <NumberButton num="2" dispatch={dispatch} />
         <NumberButton num="1" dispatch={dispatch} />
-        <button>
-          <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
-        </button>
+        <OperatorButton operator="-" icons="MINUS" dispatch={dispatch} />
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
         <NumberButton num="." dispatch={dispatch} icon="true" />
         <button>
