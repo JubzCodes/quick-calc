@@ -11,6 +11,7 @@ import {
   faCalculator
 } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
+import NumberButton from "./components/Number";
 
 
 
@@ -26,6 +27,17 @@ export const ACTIONS = {
 
 //REDUCER FUNCTION
 const reducer =  (state, { type, payload }) => {
+
+  //SWITCH CASES FOR ACTIONS
+
+    // add number to output
+  switch(type) {
+    case ACTIONS.ADD_NUM: 
+    return {
+      ...state, 
+      currentOutput: `${currentOutput}${payload.num}`
+    }
+  }
 
 }
 
