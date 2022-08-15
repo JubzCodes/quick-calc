@@ -10,9 +10,32 @@ import {
   faDeleteLeft,
   faCalculator
 } from "@fortawesome/free-solid-svg-icons";
+import { useReducer } from "react";
+
+
+
+//CALCULATOR OPTIONS
+export const ACTIONS = {
+  ADD_NUM: "add-num",
+  CHOOSE_OPERATOR: "choose-operator",
+  CLEAR: "clear",
+  DELETE_NUM: "delete-num",
+  EVALUATE: "evaluate",
+};
+
+
+//REDUCER FUNCTION
+const reducer =  (state, { type, payload }) => {
+
+}
+
 
 
 function App() {
+
+  //REDUCER STATE
+  const [{ currentOutput, previousOoutput, operator }, dispatch] = useReducer(reducer)
+
   return (
     <div>
       <h1>
