@@ -33,19 +33,22 @@ const reducer =  (state, { type, payload }) => {
 
   //SWITCH CASES FOR ACTIONS
 
-    // add number to output
   switch(type) {
+
+
+    case ACTIONS.CLEAR: 
+    return {}
+
+    // add number to output
     case ACTIONS.ADD_NUM:
 
-      console.log(state.currentOutput, "out")
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
-        return state
+        return state;
       }
 
       //handle multiple .'s
       if (payload.num === "." && state.currentOutput?.includes(".")) {
-        console.log("works");
         return state;
       }
     
@@ -64,8 +67,6 @@ function App() {
   //REDUCER STATE
   const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer, {currentOutput: "0"})
 
-  console.log(currentOutput , "curr")
-
   return (
     <div>
       <h1>
@@ -77,7 +78,7 @@ function App() {
           <div className="previous">{previousOutput}</div>
           <div className="current">{currentOutput}</div>
         </div>
-        <button className="two">A/C</button>
+        <button className="two" onClick={() => dispatch({type: ACTIONS.CLEAR})}>A/C</button>
         <button>
           <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>
         </button>
