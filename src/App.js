@@ -14,6 +14,10 @@ import { useReducer } from "react";
 import NumberButton from "./components/Number";
 
 
+const styles = { 
+  gridColumn: "span 2"
+}
+
 
 //CALCULATOR OPTIONS
 export const ACTIONS = {
@@ -84,7 +88,7 @@ function App() {
         <button>
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
-        <NumberButton  num="0" dispatch={dispatch} />
+        <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
         </button>
