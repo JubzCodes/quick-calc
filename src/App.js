@@ -35,9 +35,12 @@ const reducer =  (state, { type, payload }) => {
 
   switch(type) {
 
-
+    // handle clear button
     case ACTIONS.CLEAR: 
-    return {}
+      return {
+        ...state,
+        currentOutput: "0"
+    }
 
     // add number to output
     case ACTIONS.ADD_NUM:
