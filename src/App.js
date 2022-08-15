@@ -7,7 +7,8 @@ import {
   faMinus,
   faEquals,
   faDeleteLeft,
-  faCalculator
+  faCalculator,
+  faBan
 } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
 import NumberButton from "./components/Number";
@@ -81,7 +82,12 @@ function App() {
           <div className="previous">{previousOutput}</div>
           <div className="current">{currentOutput}</div>
         </div>
-        <button className="two" onClick={() => dispatch({type: ACTIONS.CLEAR})}>A/C</button>
+        <button
+          className="two"
+          onClick={() => dispatch({ type: ACTIONS.CLEAR })}
+        >
+          <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
+        </button>
         <button>
           <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>
         </button>
@@ -107,11 +113,7 @@ function App() {
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
-        <NumberButton
-          num="."
-          dispatch={dispatch}
-          icon="true"
-        />
+        <NumberButton num="." dispatch={dispatch} icon="true" />
         <button>
           <FontAwesomeIcon icon={faEquals} color="blue"></FontAwesomeIcon>
         </button>
