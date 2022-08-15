@@ -35,7 +35,7 @@ const reducer =  (state, { type, payload }) => {
     case ACTIONS.ADD_NUM: 
     return {
       ...state, 
-      currentOutput: `${currentOutput}${payload.num}`
+      currentOutput: `${state.currentOutput || " "}${payload.num}`
     }
   }
 
@@ -46,7 +46,7 @@ const reducer =  (state, { type, payload }) => {
 function App() {
 
   //REDUCER STATE
-  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer)
+  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer, {})
 
   return (
     <div>
@@ -84,7 +84,7 @@ function App() {
         <button>
           <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
         </button>
-        <NumberButton className="two" num="0" dispatch={dispatch} />
+        <NumberButton  num="0" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
         </button>
