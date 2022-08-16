@@ -6,8 +6,7 @@ import {
 
 export default function NumberButton({ dispatch, num, styles, icon }) {
 
-  // console.log(num)
-
+  //terenary operator to display "." icon
   return <button className={`${styles ? "two" : ""}`}  onClick={()=> dispatch({ type: ACTIONS.ADD_NUM, payload: {num}})}> {num && icon? (<FontAwesomeIcon icon={faCircle} size="2xs"></FontAwesomeIcon>
 ) : (num)}</button>
 }

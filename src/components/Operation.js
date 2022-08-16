@@ -9,8 +9,7 @@ import {
 
 export default function OperatorButton({ dispatch, operator, icons }) {
 
-  // console.log(operator , "in button")
-
+  //fucntion to display icons for buttons
   const iconPicker = (icons) => {
 
     switch (icons) {
