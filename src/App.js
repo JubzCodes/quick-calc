@@ -107,6 +107,14 @@ const reducer = (state, { type, payload }) => {
         return state;
       }
 
+      //handle operator switch
+    if (state.currentOutput == null) {
+      return {
+        ...state, 
+        operator: payload.operator
+      }
+    }
+
       //handle previous output push on operator click
       if (state.previousOutput == null) {
         console.log("this works");
@@ -117,16 +125,6 @@ const reducer = (state, { type, payload }) => {
           currentOutput: null,
         };
       }
-
-      // //handle previous output
-      // if (state.previousOutput && state.currentOutput && payload.operator) {
-      //   return {
-      //     ...state,
-      //     operator: payload.operator,
-      //     previousOutput: `${state.previousOutput} ${state.operator}${state.currentOutput}`,
-      //     currentOutput: null,
-      //   };
-      // }
 
       return {
         ...state,
