@@ -135,11 +135,12 @@ const reducer = (state, { type, payload }) => {
 
   //////////////// CASE 4 ///////////////////
     case ACTIONS.EVALUATE:
-      if (state.currentOutput == null || state.previousOutput == null) {
+      if (state.currentOutput == null || state.previousOutput == null || state.operator == null) {
         return state;
       }
       return {
         ...state,
+        operator: null,
         previousOutput: null,
         currentOutput: evaluate(state)
       }
