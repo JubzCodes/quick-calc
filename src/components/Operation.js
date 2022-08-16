@@ -21,7 +21,10 @@ export default function OperatorButton({ dispatch, operator, icons }) {
               dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
             }
           >
-            <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>
+            <FontAwesomeIcon
+              icon={faDivide}
+              color="blue"
+            ></FontAwesomeIcon>
           </button>
         );
 
@@ -32,7 +35,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
               dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
             }
           >
-            <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faXmark} color="blue"></FontAwesomeIcon>
           </button>
         );
 
@@ -43,7 +46,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
               dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
             }
           >
-            <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faPlus} color="blue"></FontAwesomeIcon>
           </button>
         );
 
@@ -54,7 +57,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
               dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
             }
           >
-            <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faMinus} color="blue"></FontAwesomeIcon>
           </button>
         );
 

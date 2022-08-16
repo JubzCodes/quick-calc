@@ -190,12 +190,12 @@ function App() {
           className="two"
           onClick={() => dispatch({ type: ACTIONS.CLEAR })}
         >
-          <FontAwesomeIcon icon={faBan} size="sm"></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faBan} color="red" size="sm"></FontAwesomeIcon>
         </button>
-        <OperatorButton operator="÷" icons="DIVIDE" dispatch={dispatch} />
         <button>
           <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>
         </button>
+        <OperatorButton operator="÷" icons="DIVIDE" dispatch={dispatch} />
         <NumberButton num="9" dispatch={dispatch} />
         <NumberButton num="8" dispatch={dispatch} />
         <NumberButton num="7" dispatch={dispatch} />
@@ -211,7 +211,7 @@ function App() {
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
         <NumberButton num="." dispatch={dispatch} icon="true" />
         <button onClick={() => dispatch({ type: ACTIONS.EVALUATE })}>
-          <FontAwesomeIcon icon={faEquals} color="blue"></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faEquals} ></FontAwesomeIcon>
         </button>
       </div>
     </div>
