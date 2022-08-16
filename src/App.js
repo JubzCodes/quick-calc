@@ -8,17 +8,15 @@ import {
   faEquals,
   faDeleteLeft,
   faCalculator,
-  faBan
+  faBan,
 } from "@fortawesome/free-solid-svg-icons";
 import { useReducer } from "react";
 import NumberButton from "./components/Number";
 import OperatorButton from "./components/Operation";
 
-
-const styles = { 
-  gridColumn: "span 2"
-}
-
+const styles = {
+  gridColumn: "span 2",
+};
 
 //CALCULATOR OPTIONS
 export const ACTIONS = {
@@ -29,19 +27,20 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
-
 //REDUCER FUNCTION
-const reducer =  (state, { type, payload }) => {
-
+const reducer = (state, { type, payload }) => {
   //SWITCH CASES FOR ACTIONS
 
   switch (type) {
     //////////////// CASE 1 ///////////////////
     // handle clear button
     case ACTIONS.CLEAR:
+    console.log("1");
       return {
         ...state,
-        currentOutput: "0",
+        currentOutput: null,
+        previousOutput: null,
+        operator: null
       };
 
     //////////////// CASE 2 ///////////////////
@@ -49,40 +48,43 @@ const reducer =  (state, { type, payload }) => {
     case ACTIONS.ADD_NUM:
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
+        console.log("2")
+        return state;
+      }
+
+      //handle multiple .'s
+      if (payload.num === "." && state.currentOutput?.includes(".")) {
+        console.log("2.1")
         return state;
       }
 
     //////////////// CASE 3 ///////////////////
-      //handle multiple .'s
-      if (payload.num === "." && state.currentOutput?.includes(".")) {
+    case ACTIONS.CHOOSE_OPERATOR:
+
+      //handle empty output on operator click
+      if (state.currentOutput == null && state.previousOutput == null) {
+        console.log(" case 3");
         return state;
       }
 
-    //////////////// CASE 4 ///////////////////
-    case ACTIONS.CHOOSE_OPERATOR: 
-    if (state.previousOutput === null) {
-      return {
-        ...state, 
-        operator: payload.operator,
-        previousOutput: state.currentOutput,
-        currentOutput: null,
-      }
-    }
 
+console.log("defualt case")
       return {
         ...state,
         currentOutput: `${state.currentOutput || " "}${payload.num}`,
       };
+
   }
-
-}
-
-
+};
 
 function App() {
-
   //REDUCER STATE
-  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(reducer, {currentOutput: "0"})
+  const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(
+    reducer,
+    {}
+  );
+
+  console.log(operator, "app");
 
   return (
     <div>
@@ -96,8 +98,9 @@ function App() {
       </h1>
       <div className="grid">
         <div className="output">
-          <div className="previous">{previousOutput}</div>
-          <div className="current">{currentOutput}</div>
+          <div className="previous">{previousOutput}{operator}
+          </div>
+          <div className="current">{currentOutput ?  (currentOutput) : ("0")}</div>
         </div>
         <button
           className="two"

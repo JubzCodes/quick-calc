@@ -9,12 +9,16 @@ import {
 
 export default function OperatorButton({ dispatch, operator, icons }) {
 
+  // console.log(operator , "in button")
+
   const iconPicker = (icons) => {
 
     switch (icons) {
 
       case icons = "DIVIDE":
-        return <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>;
+        return (<button>
+          <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>;
+          </button>)
 
       case icons = "MULTIPLY":
         return <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>;
@@ -31,9 +35,11 @@ export default function OperatorButton({ dispatch, operator, icons }) {
 
   return (
     <button
-      onClick={() => dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })}
+      onClick={() =>
+        dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: {operator} })
+      }
     >
-      {iconPicker(icons)}
+      {operator}
     </button>
   );
 }
