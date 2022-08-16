@@ -195,6 +195,31 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
+//formatter with no fractions
+const formatter = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0,
+})
+
+//format function
+const formatOutput = (output) => {
+
+  if (output == null) {
+    return;
+  }
+
+  // split output into 2 variables
+  const [number, decimal] = output.split('.');
+
+  //handle format if theres no decimal
+  if (decimal == null) {
+    return formatter.format(number);
+  }
+
+  //handle format with decimal
+  return `${formatter.format(number)}${decimal}`;
+
+}
+
 function App() {
   //REDUCER STATE
   const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(
@@ -217,10 +242,10 @@ function App() {
       <div className="grid">
         <div className="output">
           <div className="previous">
-            {previousOutput}
+            {formatOutput(previousOutput)}
             {operator}
           </div>
-          <div className="current">{currentOutput ? currentOutput : "0"}</div>
+          <div className="current">{currentOutput ? formatOutput(currentOutput) : "0"}</div>
         </div>
         <button
           className="two"
