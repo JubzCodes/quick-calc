@@ -216,7 +216,7 @@ const formatOutput = (output) => {
   }
 
   //handle format with decimal
-  return `${formatter.format(number)}${decimal}`;
+  return `${formatter.format(number)}.${decimal}`;
 
 }
 
