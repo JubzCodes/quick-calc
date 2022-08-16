@@ -162,6 +162,14 @@ const reducer = (state, { type, payload }) => {
 
     //////////////// CASE 5 ///////////////////
     case ACTIONS.DELETE_NUM:
+      //handle delete when overwrite is true
+      if (state.overwrite) {
+        return {
+          ...state,
+          currentOutput: null,
+          overwrite: false,
+        };
+      }
     //handle delete when output is null
     if (state.currentOutput == null) {
       return state;
