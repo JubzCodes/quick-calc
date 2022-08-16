@@ -32,6 +32,7 @@ function evaluate({ currentOutput, previousOutput, operator }) {
 
   const current = parseFloat(currentOutput);
   const previous = parseFloat(previousOutput);
+  if (isNaN(previous) || isNaN(current)) return "";
 
   let value = ""
 
@@ -105,7 +106,7 @@ const reducer = (state, { type, payload }) => {
       }
 
       //handle previous output push on operator click
-      if (payload.operator && state.previousOutput == null) {
+      if (state.previousOutput == null) {
         console.log("this works");
         return {
           ...state,
@@ -115,14 +116,21 @@ const reducer = (state, { type, payload }) => {
         };
       }
 
-      //handle previous output
-      if (state.previousOutput && state.currentOutput && payload.operator) {
-        return {
-          ...state,
-          operator: payload.operator,
-          previousOutput: `${state.previousOutput} ${state.operator}${state.currentOutput}`,
-          currentOutput: null,
-        };
+      // //handle previous output
+      // if (state.previousOutput && state.currentOutput && payload.operator) {
+      //   return {
+      //     ...state,
+      //     operator: payload.operator,
+      //     previousOutput: `${state.previousOutput} ${state.operator}${state.currentOutput}`,
+      //     currentOutput: null,
+      //   };
+      // }
+
+      return {
+        ...state,
+        operator: payload.operator,
+        previousOutput: evaluate(state),
+        currentOutput: null
       }
 
   }
