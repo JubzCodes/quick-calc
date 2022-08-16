@@ -53,6 +53,10 @@ function evaluate({ currentOutput, previousOutput, operator }) {
       break; 
 
     case "÷":
+      //handle user dividing by 0
+      if (current === 0) {
+      return value = "Error"
+      }
       value = previous / current
       break;
 
