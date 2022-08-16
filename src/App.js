@@ -35,12 +35,12 @@ const reducer = (state, { type, payload }) => {
     //////////////// CASE 1 ///////////////////
     // handle clear button
     case ACTIONS.CLEAR:
-    console.log("1");
+      console.log("1");
       return {
         ...state,
         currentOutput: null,
         previousOutput: null,
-        operator: null
+        operator: null,
       };
 
     //////////////// CASE 2 ///////////////////
@@ -48,32 +48,41 @@ const reducer = (state, { type, payload }) => {
     case ACTIONS.ADD_NUM:
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
-        console.log("2")
+        console.log("2");
         return state;
       }
 
       //handle multiple .'s
       if (payload.num === "." && state.currentOutput?.includes(".")) {
-        console.log("2.1")
+        console.log("2.1");
         return state;
       }
 
     //////////////// CASE 3 ///////////////////
     case ACTIONS.CHOOSE_OPERATOR:
-
       //handle empty output on operator click
       if (state.currentOutput == null && state.previousOutput == null) {
         console.log(" case 3");
         return state;
       }
 
+      //handle previous output push on operator click
+      if (payload.operator && state.previousOutput == null) {
+        console.log("this works");
+        return {
+          ...state,
+          operator: payload.operator,
+          previousOutput: `${state.currentOutput || " "}`,
+          currentOutput: null,
+        };
+      }
 
-console.log("defualt case")
+
+      console.log("defualt case");
       return {
         ...state,
         currentOutput: `${state.currentOutput || " "}${payload.num}`,
       };
-
   }
 };
 
