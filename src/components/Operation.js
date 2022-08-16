@@ -16,30 +16,52 @@ export default function OperatorButton({ dispatch, operator, icons }) {
     switch (icons) {
 
       case icons = "DIVIDE":
-        return (<button>
-          <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>;
-          </button>)
+        return (
+          <button
+            onClick={() =>
+              dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
+            }
+          >
+            <FontAwesomeIcon icon={faDivide}></FontAwesomeIcon>
+          </button>
+        );
 
       case icons = "MULTIPLY":
-        return <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>;
+        return (
+          <button
+            onClick={() =>
+              dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
+            }
+          >
+            <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
+          </button>
+        );
 
       case icons = "PLUS":
-        return <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>;
+        return (
+          <button
+            onClick={() =>
+              dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
+            }
+          >
+            <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+          </button>
+        );
 
       case icons = "MINUS":
-        return <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>;
+        return (
+          <button
+            onClick={() =>
+              dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
+            }
+          >
+            <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
+          </button>
+        );
 
     }
 
   }
 
-  return (
-    <button
-      onClick={() =>
-        dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: {operator} })
-      }
-    >
-      {operator}
-    </button>
-  );
+  return iconPicker(icons)
 }
