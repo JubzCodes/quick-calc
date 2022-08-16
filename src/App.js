@@ -1,10 +1,6 @@
 import "./app.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlus,
-  faXmark,
-  faDivide,
-  faMinus,
   faEquals,
   faDeleteLeft,
   faCalculator,
@@ -13,6 +9,7 @@ import {
 import { useReducer } from "react";
 import NumberButton from "./components/Number";
 import OperatorButton from "./components/Operation";
+import { reducer } from "./Reducer";
 
 const styles = {
   gridColumn: "span 2",
@@ -28,8 +25,9 @@ export const ACTIONS = {
 };
 
 //EVALUATE FUNCTION
-function evaluate({ currentOutput, previousOutput, operator }) {
+export const evaluate = ({ currentOutput, previousOutput, operator }) => {
 
+  //change outputs to strings
   const current = parseFloat(currentOutput);
   const previous = parseFloat(previousOutput);
 
@@ -66,135 +64,6 @@ function evaluate({ currentOutput, previousOutput, operator }) {
 
 }
 
-//REDUCER FUNCTION
-const reducer = (state, { type, payload }) => {
-  //SWITCH CASES FOR ACTIONS
-
-  switch (type) {
-    //////////////// CASE 1 ///////////////////
-    // handle clear button
-    case ACTIONS.CLEAR:
-      console.log("sase 1");
-      return {
-        ...state,
-        currentOutput: null,
-        previousOutput: null,
-        operator: null,
-      };
-
-    //////////////// CASE 2 ///////////////////
-    // add number to output
-    case ACTIONS.ADD_NUM:
-      //handle overwrite of current output after evauluation
-      if (state.overwrite) {
-        return {
-          ...state,
-          currentOutput: payload.num,
-          overwrite: false,
-        };
-      }
-
-      // handle multiple 0's on first input
-      if (payload.num === "0" && state.currentOutput === "0") {
-        console.log("case 2");
-        return state;
-      }
-
-      //handle multiple .'s
-      if (payload.num === "." && state.currentOutput?.includes(".")) {
-        console.log("case 2.1");
-        return state;
-      }
-
-      console.log("defualt case");
-      return {
-        ...state,
-        currentOutput: `${state.currentOutput || " "}${payload.num}`,
-      };
-
-    //////////////// CASE 3 ///////////////////
-    case ACTIONS.CHOOSE_OPERATOR:
-      //handle empty output on operator click
-      if (state.currentOutput == null && state.previousOutput == null) {
-        console.log(" case 3");
-        return state;
-      }
-
-      //handle operator switch
-      if (state.currentOutput == null) {
-        return {
-          ...state,
-          operator: payload.operator,
-        };
-      }
-
-      //handle previous output push on operator click
-      if (state.previousOutput == null) {
-        console.log("this works");
-        return {
-          ...state,
-          operator: payload.operator,
-          previousOutput: `${state.currentOutput || " "}`,
-          currentOutput: null,
-        };
-      }
-
-      return {
-        ...state,
-        operator: payload.operator,
-        previousOutput: evaluate(state),
-        currentOutput: null,
-      };
-
-    //////////////// CASE 4 ///////////////////
-    case ACTIONS.EVALUATE:
-      //handle no output when equal is pressed when outputs are empty
-      if (
-        state.currentOutput == null ||
-        state.previousOutput == null ||
-        state.operator == null
-      ) {
-        return state;
-      }
-      return {
-        ...state,
-        overwrite: true,
-        operator: null,
-        previousOutput: null,
-        currentOutput: evaluate(state),
-      };
-
-    //////////////// CASE 5 ///////////////////
-    case ACTIONS.DELETE_NUM:
-      //handle delete when overwrite is true
-      if (state.overwrite) {
-        return {
-          ...state,
-          currentOutput: null,
-          overwrite: false,
-        };
-      }
-    //handle delete when output is null
-    if (state.currentOutput == null) {
-      return state;
-    }
-
-    //handle delete when theres 1 number in output
-    if (state.currentOutput.length === 1) {
-      return {
-        ...state,
-        currentOutput: null
-      }
-    }
-
-    return {
-      ...state,
-      currentOutput: state.currentOutput.slice(0, -1)
-    }
-
-  }
-};
-
 //formatter with no fractions
 const formatter = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0,
@@ -221,13 +90,12 @@ const formatOutput = (output) => {
 }
 
 function App() {
+
   //REDUCER STATE
   const [{ currentOutput, previousOutput, operator }, dispatch] = useReducer(
     reducer,
     {}
   );
-
-  console.log(operator, "app");
 
   return (
     <div>
