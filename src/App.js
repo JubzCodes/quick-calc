@@ -81,6 +81,16 @@ const reducer = (state, { type, payload }) => {
     //////////////// CASE 2 ///////////////////
     // add number to output
     case ACTIONS.ADD_NUM:
+
+      //handle overwrite of current output after evauluation
+      if (state.overwrite) {
+        return {
+          ...state,
+          currentOutput: payload.num,
+          overwrite: false
+        }
+      }  
+
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
         console.log("case 2");
@@ -135,11 +145,13 @@ const reducer = (state, { type, payload }) => {
 
   //////////////// CASE 4 ///////////////////
     case ACTIONS.EVALUATE:
+      //handle no output when equal is pressed when outputs are empty
       if (state.currentOutput == null || state.previousOutput == null || state.operator == null) {
         return state;
       }
       return {
         ...state,
+        overwrite: true,
         operator: null,
         previousOutput: null,
         currentOutput: evaluate(state)
