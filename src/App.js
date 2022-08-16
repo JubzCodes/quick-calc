@@ -77,6 +77,15 @@ const reducer = (state, { type, payload }) => {
         };
       }
 
+      //handle previous output
+      if (state.previousOutput && state.currentOutput && payload.operator) {
+        return {
+          ...state,
+          operator: payload.operator,
+          previousOutput: `${state.previousOutput} ${state.operator}${state.currentOutput}`,
+          currentOutput: null,
+        };
+      }
 
       console.log("defualt case");
       return {
