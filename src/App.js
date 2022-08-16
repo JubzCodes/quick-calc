@@ -27,6 +27,38 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
+//EVALUATE FUNCTION
+function evaluate({ currentOutput, previousOutput, operator }) {
+
+  const current = parseFloat(currentOutput);
+  const previous = parseFloat(previousOutput);
+
+  let value = ""
+
+  switch(operator) {
+
+    case "+": 
+      value = previous + current
+      break; 
+
+    case "-": 
+      value = previous - current
+      break;
+    
+    case "*":
+      value = previous * current
+      break; 
+
+    case "÷":
+      value = previous / current
+      break;
+
+  }
+
+  return value.toString()
+
+}
+
 //REDUCER FUNCTION
 const reducer = (state, { type, payload }) => {
   //SWITCH CASES FOR ACTIONS
@@ -73,7 +105,7 @@ const reducer = (state, { type, payload }) => {
       }
 
       //handle previous output push on operator click
-      if (state.previousOutput == null) {
+      if (payload.operator && state.previousOutput == null) {
         console.log("this works");
         return {
           ...state,
