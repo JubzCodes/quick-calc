@@ -32,6 +32,8 @@ function evaluate({ currentOutput, previousOutput, operator }) {
 
   const current = parseFloat(currentOutput);
   const previous = parseFloat(previousOutput);
+
+  //check if inptuts are numebrs
   if (isNaN(previous) || isNaN(current)) return "";
 
   let value = ""
@@ -174,7 +176,7 @@ function App() {
         <NumberButton num="9" dispatch={dispatch} />
         <NumberButton num="8" dispatch={dispatch} />
         <NumberButton num="7" dispatch={dispatch} />
-        <OperatorButton operator="x" icons="MULTIPLY" dispatch={dispatch} />
+        <OperatorButton operator="*" icons="MULTIPLY" dispatch={dispatch} />
         <NumberButton num="6" dispatch={dispatch} />
         <NumberButton num="5" dispatch={dispatch} />
         <NumberButton num="4" dispatch={dispatch} />
