@@ -26,7 +26,6 @@ export const ACTIONS = {
 
 //EVALUATE FUNCTION
 export const evaluate = ({ currentOutput, previousOutput, operator }) => {
-
   //change outputs to strings
   const current = parseFloat(currentOutput);
   const previous = parseFloat(previousOutput);
@@ -34,34 +33,32 @@ export const evaluate = ({ currentOutput, previousOutput, operator }) => {
   //check if inptuts are numebrs
   if (isNaN(previous) || isNaN(current)) return "";
 
-  let value = ""
+  let value = "";
 
-  switch(operator) {
-
-    case "+": 
-      value = previous + current
-      break; 
-
-    case "-": 
-      value = previous - current
+  // eslint-disable-next-line
+  switch (operator) {
+    case "+":
+      value = previous + current;
       break;
-    
+
+    case "-":
+      value = previous - current;
+      break;
+
     case "x":
-      value = previous * current
-      break; 
+      value = previous * current;
+      break;
 
     case "÷":
       //handle user dividing by 0
       if (current === 0) {
-      return value = "Error"
+        return (value = "Error");
       }
-      value = previous / current
+      value = previous / current;
       break;
-
   }
 
-  return value.toString()
-
+  return value.toString();
 }
 
 //formatter with no fractions

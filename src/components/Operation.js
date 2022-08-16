@@ -11,24 +11,21 @@ export default function OperatorButton({ dispatch, operator, icons }) {
 
   //fucntion to display icons for buttons
   const iconPicker = (icons) => {
-
+    
+    // eslint-disable-next-line
     switch (icons) {
-
-      case icons = "DIVIDE":
+      case (icons = "DIVIDE"):
         return (
           <button
             onClick={() =>
               dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operator } })
             }
           >
-            <FontAwesomeIcon
-              icon={faDivide}
-              color="blue"
-            ></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faDivide} color="blue"></FontAwesomeIcon>
           </button>
         );
 
-      case icons = "MULTIPLY":
+      case (icons = "MULTIPLY"):
         return (
           <button
             onClick={() =>
@@ -39,7 +36,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
           </button>
         );
 
-      case icons = "PLUS":
+      case (icons = "PLUS"):
         return (
           <button
             onClick={() =>
@@ -50,7 +47,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
           </button>
         );
 
-      case icons = "MINUS":
+      case (icons = "MINUS"):
         return (
           <button
             onClick={() =>
@@ -60,9 +57,7 @@ export default function OperatorButton({ dispatch, operator, icons }) {
             <FontAwesomeIcon icon={faMinus} color="blue"></FontAwesomeIcon>
           </button>
         );
-
     }
-
   }
 
   return iconPicker(icons)

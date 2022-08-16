@@ -7,6 +7,7 @@ import { ACTIONS
 export const reducer = (state, { type, payload }) => {
   //SWITCH CASES FOR ACTIONS
 
+  // eslint-disable-next-line
   switch (type) {
     //////////////// CASE 1 ///////////////////
     // handle clear button
