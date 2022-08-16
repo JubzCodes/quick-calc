@@ -108,12 +108,12 @@ const reducer = (state, { type, payload }) => {
       }
 
       //handle operator switch
-    if (state.currentOutput == null) {
-      return {
-        ...state, 
-        operator: payload.operator
+      if (state.currentOutput == null) {
+        return {
+          ...state,
+          operator: payload.operator,
+        };
       }
-    }
 
       //handle previous output push on operator click
       if (state.previousOutput == null) {
@@ -130,9 +130,19 @@ const reducer = (state, { type, payload }) => {
         ...state,
         operator: payload.operator,
         previousOutput: evaluate(state),
-        currentOutput: null
-      }
+        currentOutput: null,
+      };
 
+  //////////////// CASE 4 ///////////////////
+    case ACTIONS.EVALUATE:
+      if (state.currentOutput == null || state.previousOutput == null) {
+        return state;
+      }
+      return {
+        ...state,
+        previousOutput: null,
+        currentOutput: evaluate(state)
+      }
   }
 };
 
@@ -157,9 +167,11 @@ function App() {
       </h1>
       <div className="grid">
         <div className="output">
-          <div className="previous">{previousOutput}{operator}
+          <div className="previous">
+            {previousOutput}
+            {operator}
           </div>
-          <div className="current">{currentOutput ?  (currentOutput) : ("0")}</div>
+          <div className="current">{currentOutput ? currentOutput : "0"}</div>
         </div>
         <button
           className="two"
@@ -185,7 +197,7 @@ function App() {
         <OperatorButton operator="-" icons="MINUS" dispatch={dispatch} />
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
         <NumberButton num="." dispatch={dispatch} icon="true" />
-        <button>
+        <button onClick={() => dispatch({ type: ACTIONS.EVALUATE })}>
           <FontAwesomeIcon icon={faEquals} color="blue"></FontAwesomeIcon>
         </button>
       </div>
