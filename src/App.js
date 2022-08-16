@@ -81,15 +81,14 @@ const reducer = (state, { type, payload }) => {
     //////////////// CASE 2 ///////////////////
     // add number to output
     case ACTIONS.ADD_NUM:
-
       //handle overwrite of current output after evauluation
       if (state.overwrite) {
         return {
           ...state,
           currentOutput: payload.num,
-          overwrite: false
-        }
-      }  
+          overwrite: false,
+        };
+      }
 
       // handle multiple 0's on first input
       if (payload.num === "0" && state.currentOutput === "0") {
@@ -143,10 +142,14 @@ const reducer = (state, { type, payload }) => {
         currentOutput: null,
       };
 
-  //////////////// CASE 4 ///////////////////
+    //////////////// CASE 4 ///////////////////
     case ACTIONS.EVALUATE:
       //handle no output when equal is pressed when outputs are empty
-      if (state.currentOutput == null || state.previousOutput == null || state.operator == null) {
+      if (
+        state.currentOutput == null ||
+        state.previousOutput == null ||
+        state.operator == null
+      ) {
         return state;
       }
       return {
@@ -154,8 +157,29 @@ const reducer = (state, { type, payload }) => {
         overwrite: true,
         operator: null,
         previousOutput: null,
-        currentOutput: evaluate(state)
+        currentOutput: evaluate(state),
+      };
+
+    //////////////// CASE 5 ///////////////////
+    case ACTIONS.DELETE_NUM:
+    //handle delete when output is null
+    if (state.currentOutput == null) {
+      return state;
+    }
+
+    //handle delete when theres 1 number in output
+    if (state.currentOutput.length === 1) {
+      return {
+        ...state,
+        currentOutput: null
       }
+    }
+
+    return {
+      ...state,
+      currentOutput: state.currentOutput.slice(0, -1)
+    }
+
   }
 };
 
@@ -192,8 +216,11 @@ function App() {
         >
           <FontAwesomeIcon icon={faBan} color="red" size="sm"></FontAwesomeIcon>
         </button>
-        <button>
-          <FontAwesomeIcon icon={faDeleteLeft}></FontAwesomeIcon>
+        <button onClick={() => dispatch({ type: ACTIONS.DELETE_NUM })}>
+          <FontAwesomeIcon
+            onClick={() => dispatch({ type: ACTIONS.CLEAR })}
+            icon={faDeleteLeft}
+          ></FontAwesomeIcon>
         </button>
         <OperatorButton operator="÷" icons="DIVIDE" dispatch={dispatch} />
         <NumberButton num="9" dispatch={dispatch} />
@@ -211,7 +238,7 @@ function App() {
         <NumberButton styles={styles.gridColumn} num="0" dispatch={dispatch} />
         <NumberButton num="." dispatch={dispatch} icon="true" />
         <button onClick={() => dispatch({ type: ACTIONS.EVALUATE })}>
-          <FontAwesomeIcon icon={faEquals} ></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faEquals}></FontAwesomeIcon>
         </button>
       </div>
     </div>
